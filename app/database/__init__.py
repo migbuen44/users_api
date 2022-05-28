@@ -15,11 +15,8 @@ try:
 
   if (postgreSQL_pool) :
     print("Connection pool created successfully")
+    ps_connection = postgreSQL_pool.getconn()
+    ps_connection.autocommit = True
 
 except (Exception, psycopg2.DatabaseError) as error:
   print("Error while connecting to PostgresQL", error)
-
-finally:
-  if postgreSQL_pool:
-    postgreSQL_pool.closeall
-  print("PostgreSQL connection pool is closed")
