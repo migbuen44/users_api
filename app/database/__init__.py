@@ -18,8 +18,3 @@ try:
 
 except (Exception, psycopg2.DatabaseError) as error:
   print("Error while connecting to PostgresQL", error)
-
-finally:
-  if postgreSQL_pool:
-    postgreSQL_pool.closeall
-  print("PostgreSQL connection pool is closed")

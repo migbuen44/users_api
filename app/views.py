@@ -1,10 +1,11 @@
 from app import app
-from app.database import postgreSQL_pool as db
+from flask import request
+from operator import itemgetter
+import app.database.dbHelpers as db
 
-@app.route('/')
-def root():
-  return "root"
-
-@app.route('/signup')
+@app.route('/signup', methods=['POST'])
 def signup():
+  data = request.get_json()
+  email, password = itemgetter('email', 'password')(data)
+
   return "signup"
