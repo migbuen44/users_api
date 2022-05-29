@@ -25,5 +25,13 @@ def login():
   data = request.get_json()
   email, password = itemgetter('email', 'password')(data)
   result = db.get_user(email)
-  print('result in views: ', result)
-  return 'login'
+  if not result:
+    return Response(status=404)
+  result_id, result_email, result_password = result
+  if (result_password == password):
+    response_body = {
+      'id': result_id,
+      'email': result_email,
+    }
+    return response_body
+  return Response(status=401)
