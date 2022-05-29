@@ -19,3 +19,7 @@ def signup():
   }
 
   return response_body
+
+@app.route('/login', methods=['POST'])
+def login():
+  return 'login'
